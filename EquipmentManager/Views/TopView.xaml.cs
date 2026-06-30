@@ -11,9 +11,9 @@ namespace EquipmentManager.Views
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            // メニュー画面を開き、このトップ画面を閉じる
-            var menuView = new MenuView();
-            menuView.Show();
+            // シェル画面（サイドバー付きメイン画面）を開き、トップ画面を閉じる
+            var shellView = new ShellView();
+            shellView.Show();
             this.Close();
         }
     }

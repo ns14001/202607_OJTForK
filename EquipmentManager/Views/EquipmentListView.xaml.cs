@@ -1,49 +1,23 @@
-using EquipmentManager.Services;
-using System.Windows;
+using System.Windows.Controls;
 
 namespace EquipmentManager.Views
 {
-    public partial class EquipmentListView : Window
+    /// <summary>
+    /// 備品一覧を表示する UserControl。
+    /// ShellView のコンテンツエリアに表示される。
+    ///
+    /// TODO: 以下を実装してください。
+    ///   1. EquipmentService を使って DB から備品一覧を取得する
+    ///   2. 取得したリストを DataGrid の ItemsSource にセットして一覧を表示する
+    ///   3. 新規登録・編集・削除・貸出・返却・履歴表示ボタンを実装する
+    ///
+    /// 参考: Services/EquipmentService.cs に GetAll() が実装されているので参照してください。
+    /// </summary>
+    public partial class EquipmentListView : UserControl
     {
-        // サービスクラスを通じて DB にアクセスする
-        private readonly EquipmentService _equipmentService = new();
-
         public EquipmentListView()
         {
             InitializeComponent();
-            LoadEquipmentList();
-        }
-
-        /// <summary>備品一覧を DB から読み込んで DataGrid に表示する</summary>
-        private void LoadEquipmentList()
-        {
-            try
-            {
-                var equipmentList = _equipmentService.GetAll();
-                EquipmentDataGrid.ItemsSource = equipmentList;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(
-                    $"備品一覧の取得中にエラーが発生しました。\n{ex.Message}",
-                    "エラー",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Error);
-            }
-        }
-
-        private void NotImplementedButton_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show(
-                "この機能は未実装です。\n課題として実装してください。",
-                "未実装",
-                MessageBoxButton.OK,
-                MessageBoxImage.Information);
-        }
-
-        private void BackButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
         }
     }
 }

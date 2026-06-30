@@ -1,30 +1,15 @@
-<Window x:Class="EquipmentManager.Views.EquipmentListView"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="社内備品管理システム - 備品一覧"
-        Height="600" Width="920"
-        WindowStartupLocation="CenterOwnerScreen">
+<UserControl x:Class="EquipmentManager.Views.EquipmentListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="#F5F7FA">
 
-    <Window.Resources>
-        <Style x:Key="ActionButtonStyle" TargetType="Button">
-            <Setter Property="Width"           Value="76"/>
-            <Setter Property="Height"          Value="32"/>
-            <Setter Property="Margin"          Value="0,0,6,0"/>
-            <Setter Property="FontSize"        Value="13"/>
-            <Setter Property="Background"      Value="#3498DB"/>
-            <Setter Property="Foreground"      Value="White"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Cursor"          Value="Hand"/>
-        </Style>
-    </Window.Resources>
-
-    <Grid Margin="16">
+    <Grid Margin="24">
         <Grid.RowDefinitions>
-            <!-- タイトル行 -->
+            <!-- タイトル -->
             <RowDefinition Height="Auto"/>
-            <!-- 一覧 -->
+            <!-- 一覧エリア（実装してください） -->
             <RowDefinition Height="*"/>
-            <!-- ボタン行 -->
+            <!-- ボタンエリア（実装してください） -->
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
@@ -34,52 +19,39 @@
                    FontSize="20"
                    FontWeight="Bold"
                    Foreground="#2C3E50"
-                   Margin="0,0,0,12"/>
+                   Margin="0,0,0,16"/>
 
-        <!-- 備品一覧テーブル -->
-        <DataGrid Grid.Row="1"
-                  x:Name="EquipmentDataGrid"
-                  AutoGenerateColumns="False"
-                  IsReadOnly="True"
-                  SelectionMode="Single"
-                  GridLinesVisibility="Horizontal"
-                  HeadersVisibility="Column"
-                  CanUserAddRows="False"
-                  CanUserDeleteRows="False"
-                  AlternatingRowBackground="#F9F9F9"
-                  RowBackground="White">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="備品コード" Binding="{Binding EquipmentCode}" Width="100"/>
-                <DataGridTextColumn Header="備品名"     Binding="{Binding Name}"          Width="200"/>
-                <DataGridTextColumn Header="カテゴリ"   Binding="{Binding Category}"       Width="130"/>
-                <DataGridTextColumn Header="状態"       Binding="{Binding Status}"         Width="90"/>
-                <DataGridTextColumn Header="登録日"     Binding="{Binding RegisteredDate}" Width="100"/>
-                <DataGridTextColumn Header="備考"       Binding="{Binding Note}"           Width="*"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <!--
+            TODO: ここに DataGrid を配置して備品一覧を表示してください。
 
-        <!-- ボタンエリア -->
-        <Grid Grid.Row="2" Margin="0,12,0,0">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                <!-- 課題：以下のボタンを実装してください -->
-                <Button Content="新規登録" Style="{StaticResource ActionButtonStyle}" Click="NotImplementedButton_Click"/>
-                <Button Content="編集"     Style="{StaticResource ActionButtonStyle}" Click="NotImplementedButton_Click"/>
-                <Button Content="削除"     Style="{StaticResource ActionButtonStyle}" Click="NotImplementedButton_Click"/>
-                <Button Content="貸出"     Style="{StaticResource ActionButtonStyle}" Click="NotImplementedButton_Click"/>
-                <Button Content="返却"     Style="{StaticResource ActionButtonStyle}" Click="NotImplementedButton_Click"/>
-                <Button Content="履歴表示" Style="{StaticResource ActionButtonStyle}" Click="NotImplementedButton_Click"/>
-            </StackPanel>
+            実装のヒント:
+              1. DataGrid を配置し、AutoGenerateColumns="False" に設定する
+              2. 表示する列: 備品コード / 備品名 / カテゴリ / 状態 / 登録日 / 備考
+              3. コードビハインド（EquipmentListView.xaml.cs）で EquipmentService.GetAll() を呼び出し、
+                 DataGrid.ItemsSource にセットするとデータが表示される
 
-            <Button Content="戻る"
-                    HorizontalAlignment="Right"
-                    Width="76"
-                    Height="32"
-                    FontSize="13"
-                    Background="#95A5A6"
-                    Foreground="White"
-                    BorderThickness="0"
-                    Cursor="Hand"
-                    Click="BackButton_Click"/>
-        </Grid>
+            参考: EquipmentService.cs に GetAll() メソッドが実装されています。
+        -->
+        <Border Grid.Row="1"
+                Background="White"
+                BorderBrush="#DDE3EE"
+                BorderThickness="1">
+            <TextBlock Text="ここに DataGrid を実装してください"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontSize="14"
+                       Foreground="#B0BED4"/>
+        </Border>
+
+        <!--
+            TODO: ここにボタンを配置してください。
+
+            配置するボタン: 新規登録 / 編集 / 削除 / 貸出 / 返却 / 履歴表示
+
+            実装のヒント:
+              ・選択中の行がない場合はボタンを無効化する（Button.IsEnabled）
+              ・備品の状態によって有効/無効を切り替える（「利用可能」→貸出可 など）
+        -->
+
     </Grid>
-</Window>
+</UserControl>
